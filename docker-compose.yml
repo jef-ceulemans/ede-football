@@ -71,7 +71,7 @@ services:
    depends_on:
      - team-service
      - match-service
-   image: jefke69/ede-api-gateway
+   image: jefke69/api-gateway-ede
    ports:
      - 8083:8083
    links:
