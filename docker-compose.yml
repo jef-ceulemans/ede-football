@@ -60,7 +60,7 @@ services:
   image: jefke69/team-service
   platform: linux/amd64
   ports:
-    - 8084:8080
+    - 8084:8084
   links:
     - news-service
   environment:
