@@ -1,5 +1,5 @@
 services:
- mongo-products:
+ mongo-news:
   image: mongo:latest
   ports:
     - 27017:27017
