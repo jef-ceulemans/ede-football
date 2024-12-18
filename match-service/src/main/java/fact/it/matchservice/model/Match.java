@@ -33,6 +33,8 @@ public class Match {
 
     private String liveScore; // Actuele stand tijdens de wedstrijd, bijvoorbeeld "1-0"
 
+    private String stadium;
+
     private Integer currentMinute; // Actuele minuut van de wedstrijd
 
     private String status; // Status van de wedstrijd, bijvoorbeeld "scheduled", "running", "finished"

@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class MatchRequest {
-    private String team1Id;      // ID van het eerste team
-    private String team2Id;      // ID van het tweede team
+    private Long team1Id;      // ID van het eerste team
+    private Long team2Id;      // ID van het tweede team
     private LocalDateTime matchDate; // Datum en tijd van de wedstrijd
     private String stadium;      // Stadion waar de wedstrijd plaatsvindt
 }
