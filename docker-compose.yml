@@ -1,0 +1,89 @@
+services:
+ mongo-products:
+  image: mongo:latest
+  ports:
+    - 27017:27017
+  volumes:
+    - mongodb_news_data:/data/db
+    
+ mysql-team:
+  image: mysql:latest
+  ports:
+    - 3308:3306
+  volumes:
+    - mysql_team_data:/var/lib/mysql
+  environment:
+   MYSQL_ROOT_PASSWORD: abc123
+    
+ mysql-match:
+  image: mysql:latest
+  ports:
+    - 3307:3306
+  volumes:
+    - mysql_match_data:/var/lib/mysql
+  environment:
+   MYSQL_ROOT_PASSWORD: abc123
+    
+ news-service:
+  depends_on:
+    - mongo-news
+  image: jef/news-service
+  ports:
+    - 8081:8081
+  links:
+    - mongo-news
+  environment:
+   MONGODB_PORT: 27017
+   MONGODB_HOST: mongo-news
+   
+ match-service:
+  depends_on:
+    - mysql-match
+    - mysql-team
+  image: jef/match-service
+  ports:
+    - 8082:8082
+  links:
+    - mysql-match
+  environment:
+   MATCH_SERVICE_BASEURL: team-service:8080
+   MYSQL_DB_USERNAME: root
+   MYSQL_DB_PASSWORD: abc123
+   MYSQL_DB_HOST: mysql-match
+   MYSQL_DB_PORT: 3307
+
+ team-service:
+  depends_on:
+    - news-service
+  image: jef/team-service
+  ports:
+    - 8080:8080
+  links:
+    - news-service
+  environment:
+   MATCH_SERVICE_BASEURL: news-service:8081
+   MYSQL_DB_USERNAME: root
+   MYSQL_DB_PASSWORD: abc123
+   MYSQL_DB_HOST: mysql-team
+   MYSQL_DB_PORT: 3306
+
+ api-gateway:
+   depends_on:
+     - team-service
+     - match-service
+   image: jef/ede-api-gateway
+   ports:
+     - 8083:8083
+   links:
+     - team-service
+     - match-service
+   environment:
+     MATCH_SERVICE_BASEURL: match-service:8082
+     NEWS_SERVICE_BASEURL: news-service:8081
+     TEAM_SERVICE_BASEURL: team-service:8080
+
+
+volumes:
+ mongodb_news_data:
+ mysql_match_data:
+ mysql_team_data:
