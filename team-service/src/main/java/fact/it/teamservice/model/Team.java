@@ -14,6 +14,8 @@ import jakarta.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder // Voeg deze annotatie toe
+
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

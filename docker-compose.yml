@@ -27,7 +27,7 @@ services:
  news-service:
   depends_on:
     - mongo-news
-  image: jef/news-service
+  image: jefke69/news-service
   ports:
     - 8081:8081
   links:
@@ -40,7 +40,7 @@ services:
   depends_on:
     - mysql-match
     - mysql-team
-  image: jef/match-service
+  image: jefke69/match-service
   ports:
     - 8082:8082
   links:
@@ -55,7 +55,7 @@ services:
  team-service:
   depends_on:
     - news-service
-  image: jef/team-service
+  image: jefke69/team-service
   ports:
     - 8080:8080
   links:
@@ -71,7 +71,7 @@ services:
    depends_on:
      - team-service
      - match-service
-   image: jef/ede-api-gateway
+   image: jefke69/ede-api-gateway
    ports:
      - 8083:8083
    links:
