@@ -80,9 +80,9 @@ public class TeamService {
 
     // Methode om een team te verwijderen
     @Transactional
-    public boolean deleteTeam(Long teamId) {
-        if (teamRepository.existsById(teamId)) {
-            teamRepository.deleteById(teamId);
+    public boolean deleteTeam(Long id) {
+        if (teamRepository.existsById(id)) {
+            teamRepository.deleteById(id);
             return true; // Team succesvol verwijderd
         }
         return false; // Team niet gevonden
@@ -90,8 +90,8 @@ public class TeamService {
 
     // Methode om een team bij te werken
     @Transactional
-    public boolean updateTeam(Long teamId, TeamRequest teamRequest) {
-        Team team = teamRepository.findById(teamId).orElse(null);
+    public boolean updateTeam(Long id, TeamRequest teamRequest) {
+        Team team = teamRepository.findById(id).orElse(null);
         if (team == null) {
             return false; // Team niet gevonden
         }
