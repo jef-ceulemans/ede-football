@@ -27,7 +27,7 @@ public class MatchService {
     private String teamServiceBaseUrl;
 
     public boolean scheduleMatch(MatchRequest matchRequest) {
-        Match match = new Match();
+        Match match = Match.builder()
                 .team1Id(matchRequest.getTeam1Id())
                 .team2Id(matchRequest.getTeam2Id())
                 .matchDate(matchRequest.getMatchDate())
