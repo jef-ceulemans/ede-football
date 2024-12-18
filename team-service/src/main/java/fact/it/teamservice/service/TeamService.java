@@ -53,7 +53,7 @@ public class TeamService {
 
     // Methode om een team op te halen op basis van teamId
     @Transactional(readOnly = true)
-    public TeamResponse getTeamById(String teamId) {
+    public TeamResponse getTeamById(Long teamId) {
         Team team = teamRepository.findById(teamId).orElse(null);
         if (team != null) {
             return TeamResponse.builder()
@@ -81,7 +81,7 @@ public class TeamService {
 
     // Methode om een team te verwijderen
     @Transactional
-    public boolean deleteTeam(String teamId) {
+    public boolean deleteTeam(Long teamId) {
         if (teamRepository.existsById(teamId)) {
             teamRepository.deleteById(teamId);
             return true; // Team succesvol verwijderd
@@ -91,7 +91,7 @@ public class TeamService {
 
     // Methode om een team bij te werken
     @Transactional
-    public boolean updateTeam(String teamId, TeamRequest teamRequest) {
+    public boolean updateTeam(Long teamId, TeamRequest teamRequest) {
         Team team = teamRepository.findById(teamId).orElse(null);
         if (team == null) {
             return false; // Team niet gevonden
