@@ -20,7 +20,7 @@ public class MatchController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public String createMatch(@RequestBody MatchRequest matchRequest) {
-        boolean result = matchService.createMatch(matchRequest);
+        boolean result = matchService.createMatch(matchRequest); // Dit verwijst nu naar de correcte methode
         return (result ? "Match created successfully" : "Match creation failed");
     }
 

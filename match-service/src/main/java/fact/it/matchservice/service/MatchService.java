@@ -26,7 +26,7 @@ public class MatchService {
     @Value("${teamservice.baseurl}")
     private String teamServiceBaseUrl;
 
-    public boolean scheduleMatch(MatchRequest matchRequest) {
+    public boolean createMatch(MatchRequest matchRequest) {
         Match match = Match.builder()
                 .team1Id(matchRequest.getTeam1Id())
                 .team2Id(matchRequest.getTeam2Id())

@@ -23,9 +23,9 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment ID
     private Long id;
 
-    private String team1Id; // ID van het eerste team
+    private Long team1Id; // ID van het eerste team
 
-    private String team2Id; // ID van het tweede team
+    private Long team2Id; // ID van het tweede team
 
     private LocalDateTime matchDate; // Datum en tijd van de wedstrijd
 
