@@ -1,6 +1,7 @@
 package fact.it.teamservice.controller;
 
 import fact.it.teamservice.dto.TeamResponse;
+import fact.it.teamservice.service.TeamRequest;
 import fact.it.teamservice.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
