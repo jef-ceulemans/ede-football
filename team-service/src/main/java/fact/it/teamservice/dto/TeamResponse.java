@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class TeamResponse {
-    private String id;
+    private Long id;
     private String name;
     private String country;
     private String stadium;

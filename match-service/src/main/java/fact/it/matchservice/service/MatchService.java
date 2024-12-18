@@ -76,7 +76,7 @@ public class MatchService {
                 .build();
     }
 
-    private boolean validateTeamExists(String teamId) {
+    private boolean validateTeamExists(Long teamId) {
         try {
             webClient.get()
                     .uri("http://" + teamServiceBaseUrl + "/api/team/" + teamId)
@@ -89,7 +89,7 @@ public class MatchService {
         }
     }
 
-    private String getTeamName(String teamId) {
+    private String getTeamName(Long teamId) {
         return webClient.get()
                 .uri("http://" + teamServiceBaseUrl + "/api/team?teamId=" + teamId)
                 .retrieve()

@@ -24,7 +24,7 @@ public class TeamController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public TeamResponse getTeamById(@RequestParam String teamId){
+    public TeamResponse getTeamById(@RequestParam Long teamId){
         return teamService.getTeamById(teamId);
     }
 
@@ -38,7 +38,7 @@ public class TeamController {
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
-    public String deleteTeamById(@RequestParam String teamId){
+    public String deleteTeamById(@RequestParam Long teamId){
         boolean result = teamService.deleteTeam(teamId);
         return (result ? "Team deleted" : "Team not deleted");
     }

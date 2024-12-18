@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 @Transactional
 public interface TeamRepository extends JpaRepository<Team, Long> {
-    Team findTeamByTeamId(String teamId);
+    Team findTeamByTeamId(Long teamId);
 }
