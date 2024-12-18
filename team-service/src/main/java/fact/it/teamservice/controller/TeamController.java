@@ -31,15 +31,15 @@ public class TeamController {
     @ResponseStatus(HttpStatus.OK)
     public String registerTeam(@RequestBody TeamRequest teamRequest){
         boolean result=teamService.registerTeam(teamRequest);
-        return (result ? "Team registered" : "Team failed")
+        return (result ? "Team registered" : "Team failed");
     }
 
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
-    public String deleteTeamById(@RequestParam string teamId){
+    public String deleteTeamById(@RequestParam String teamId){
         boolean result = teamService.deleteTeam(teamId);
-        return (result ? "Team deleted" : "Team not deleted")
+        return (result ? "Team deleted" : "Team not deleted");
     }
 
 

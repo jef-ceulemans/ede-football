@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NewsRequest {
+    private String id;
     private String author;
     private String content;
     private String imageUrl;

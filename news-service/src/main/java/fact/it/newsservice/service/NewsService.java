@@ -53,6 +53,23 @@ public class NewsService {
         newsRepository.save(news);
     }
 
+    public boolean updateNews(NewsRequest newsRequest) {
+        // Haal het nieuws op via de id van de NewsRequest
+        News existingNews = newsRepository.findById(newsRequest.getId())
+                .orElseThrow(() -> new RuntimeException("News not found with ID: " + newsRequest.getId()));
+
+        // Update de velden
+        existingNews.setAuthor(newsRequest.getAuthor());
+        existingNews.setContent(newsRequest.getContent());
+        existingNews.setImageUrl(newsRequest.getImageUrl());
+        existingNews.setUpdatedDate(LocalDateTime.now());
+
+        // Sla het bijgewerkte nieuws op in de repository
+        newsRepository.save(existingNews);
+
+        return true; // of false, afhankelijk van het succes van de update
+    }
+
     public List<NewsResponse> getAllNews() {
         List<News> newsList = newsRepository.findAll();
         return newsList.stream()
