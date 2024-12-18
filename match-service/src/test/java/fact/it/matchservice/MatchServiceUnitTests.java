@@ -46,6 +46,6 @@ public class MatchServiceUnitTests {
 
     @BeforeEach
     void setUp() {
-        ReflectionTestUtils.setField(matchService, "teamServiceBaseUrl", "http://localhost:8080");
+        ReflectionTestUtils.setField(matchService, "teamServiceBaseUrl", "http://localhost:8084");
     }
 }

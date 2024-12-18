@@ -41,7 +41,7 @@ spring:
             - SetPath=/api/news
 
         - id: team-service
-          uri: http://${TEAM_SERVICE_BASEURL:localhost:8080}
+          uri: http://${TEAM_SERVICE_BASEURL:localhost:8084}
           predicates:
             - Path=/teams/**
           filters:

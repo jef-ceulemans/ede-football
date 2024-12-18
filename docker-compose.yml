@@ -28,6 +28,7 @@ services:
   depends_on:
     - mongo-news
   image: jefke69/news-service
+  platform: linux/amd64
   ports:
     - 8081:8081
   links:
@@ -41,12 +42,13 @@ services:
     - mysql-match
     - mysql-team
   image: jefke69/match-service
+  platform: linux/amd64
   ports:
     - 8082:8082
   links:
     - mysql-match
   environment:
-   MATCH_SERVICE_BASEURL: team-service:8080
+   MATCH_SERVICE_BASEURL: team-service:8084
    MYSQL_DB_USERNAME: root
    MYSQL_DB_PASSWORD: abc123
    MYSQL_DB_HOST: mysql-match
@@ -56,8 +58,9 @@ services:
   depends_on:
     - news-service
   image: jefke69/team-service
+  platform: linux/amd64
   ports:
-    - 8080:8080
+    - 8084:8080
   links:
     - news-service
   environment:
@@ -72,6 +75,7 @@ services:
      - team-service
      - match-service
    image: jefke69/api-gateway-ede
+   platform: linux/amd64
    ports:
      - 8083:8083
    links:
@@ -80,7 +84,7 @@ services:
    environment:
      MATCH_SERVICE_BASEURL: match-service:8082
      NEWS_SERVICE_BASEURL: news-service:8081
-     TEAM_SERVICE_BASEURL: team-service:8080
+     TEAM_SERVICE_BASEURL: team-service:8084
 
 
 volumes:
