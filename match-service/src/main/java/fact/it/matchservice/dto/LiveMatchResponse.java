@@ -14,6 +14,6 @@ public class LiveMatchResponse {
     private String team1Name;    // Naam van team 1
     private String team2Name;    // Naam van team 2
     private String liveScore;    // Live score: bijv. "2-1"
-    private String currentMinute; // Huidige minuut in de wedstrijd
+    private Integer currentMinute; // Huidige minuut in de wedstrijd
     private String status;       // Status: "running", "paused", "finished"
 }

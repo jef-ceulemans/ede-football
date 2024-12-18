@@ -47,6 +47,14 @@ public class MatchService {
         }
     }
 
+    public boolean updateMatchStatus(Long id, String status) {
+        Match match = matchRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Match not found"));
+        match.setStatus(status);
+        matchRepository.save(match);
+        return true;
+    }
+
     public List<MatchResponse> getAllMatches() {
         List<Match> matches = matchRepository.findAll();
 
@@ -95,6 +103,21 @@ public class MatchService {
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
+    }
+
+    public List<LiveMatchResponse> getLiveMatches() {
+        return matchRepository.findAll().stream()
+                .filter(match -> "running".equals(match.getStatus()))
+                .map(this::getLiveMatch)
+                .collect(Collectors.toList());
+    }
+
+    public boolean deleteMatch(Long id) {
+        if (matchRepository.existsById(id)) {
+            matchRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     private MatchResponse mapToMatchResponse(Match match) {
