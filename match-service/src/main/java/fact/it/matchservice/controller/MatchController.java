@@ -2,7 +2,6 @@ package fact.it.matchservice.controller;
 
 import fact.it.matchservice.dto.MatchRequest;
 import fact.it.matchservice.dto.MatchResponse;
-import fact.it.matchservice.dto.LiveMatchResponse;
 import fact.it.matchservice.service.MatchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -43,11 +42,6 @@ public class MatchController {
         return (result ? "Match status updated successfully" : "Match status update failed");
     }
 
-    @GetMapping("/live")
-    @ResponseStatus(HttpStatus.OK)
-    public List<LiveMatchResponse> getLiveMatches() {
-        return matchService.getLiveMatches();
-    }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)

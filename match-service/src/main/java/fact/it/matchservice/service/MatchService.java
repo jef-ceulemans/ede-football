@@ -2,7 +2,6 @@ package fact.it.matchservice.service;
 
 import fact.it.matchservice.dto.MatchRequest;
 import fact.it.matchservice.dto.MatchResponse;
-import fact.it.matchservice.dto.LiveMatchResponse;
 import fact.it.matchservice.model.Match;
 import fact.it.matchservice.repository.MatchRepository;
 import lombok.RequiredArgsConstructor;
@@ -70,19 +69,7 @@ public class MatchService {
         return mapToMatchResponse(match);
     }
 
-    public LiveMatchResponse getLiveMatch(Long matchId) {
-        Match match = matchRepository.findById(matchId)
-                .orElseThrow(() -> new RuntimeException("Match not found"));
 
-        return LiveMatchResponse.builder()
-                .id(match.getId())
-                .team1Name(getTeamName(match.getTeam1Id()))
-                .team2Name(getTeamName(match.getTeam2Id()))
-                .liveScore(match.getLiveScore())
-                .currentMinute(match.getCurrentMinute())
-                .status(match.getStatus())
-                .build();
-    }
 
     private boolean validateTeamExists(Long teamId) {
         try {
@@ -105,12 +92,7 @@ public class MatchService {
                 .block();
     }
 
-    public List<LiveMatchResponse> getLiveMatches() {
-        return matchRepository.findAll().stream()
-                .filter(match -> "running".equals(match.getStatus()))
-                .map(this::getLiveMatch)
-                .collect(Collectors.toList());
-    }
+
 
     public boolean deleteMatch(Long id) {
         if (matchRepository.existsById(id)) {
