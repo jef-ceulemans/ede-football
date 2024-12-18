@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @Table(name = "match") // Database tabelnaam
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Match {

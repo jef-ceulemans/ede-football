@@ -21,17 +21,16 @@ public class TeamService {
     @PostConstruct
     public void loadData() {
         if (teamRepository.count() <= 0) {
-            Team team1 = Team.builder()
-                    .name("FC Barcelona")
-                    .country("Spain")
-                    .stadium("Camp Nou")
-                    .build();
+            Team team1 = new Team();
+            team1.setName("FC Barcelona");
+            team1.setCountry("Spain");
+            team1.setStadium("Camp Nou");
 
-            Team team2 = Team.builder()
-                    .name("Manchester United")
-                    .country("England")
-                    .stadium("Old Trafford")
-                    .build();
+            Team team2 = new Team();
+            team2.setName("Manchester United");
+            team2.setCountry("England");
+            team2.setStadium("Old Trafford");
+
 
             teamRepository.save(team1);
             teamRepository.save(team2);
