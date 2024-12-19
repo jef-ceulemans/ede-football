@@ -42,12 +42,18 @@ public class TeamService {
             teamRepository.save(team2);
             teamRepository.save(team3);
 
+            System.out.println("Teams successfully saved!");
+        } else {
+            System.out.println("Teams already exist in the database.");
+        }
+
         }
     }
 
     // Methode om alle teams op te halen
     @Transactional(readOnly = true)
     public List<TeamResponse> getTeams() {
+        System.out.println("Retrieved teams: " + teams);
         return teamRepository.findAll().stream()
                 .map(team -> TeamResponse.builder()
                         .id(team.getId())
