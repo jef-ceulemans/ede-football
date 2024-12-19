@@ -20,6 +20,8 @@ public class TeamService {
     // Methode om teamdata te laden voor initiële testdata
     @PostConstruct
     public void loadData() {
+        teamRepository.deleteAll(); // Verwijder bestaande teams
+
         if (teamRepository.count() <= 0) {
             Team team1 = new Team();
             team1.setName("FC Barcelona");
