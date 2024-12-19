@@ -53,7 +53,7 @@ public class TeamService {
     // Methode om alle teams op te halen
     @Transactional(readOnly = true)
     public List<TeamResponse> getTeams() {
-        return teamRepository.findAll().stream()
+        List<TeamResponse> teamResponses = teamRepository.findAll().stream()
                 .map(team -> TeamResponse.builder()
                         .id(team.getId())
                         .name(team.getName())
@@ -61,8 +61,8 @@ public class TeamService {
                         .stadium(team.getStadium())
                         .build())
                 .toList();
-        System.out.println("Retrieved teams: " + teams);
-
+        System.out.println("Retrieved teams: " + teamResponses);
+        return teamResponses;
     }
 
     // Methode om een team op te halen op basis van teamId
