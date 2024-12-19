@@ -31,14 +31,16 @@ public class TeamService {
             team2.setCountry("England");
             team2.setStadium("Old Trafford");
 
-            Team team2 = new Team();
-            team2.setName("Lierse");
-            team2.setCountry("Belgium");
-            team2.setStadium("Herman van den poorten stadion");
+            Team team3 = new Team();
+            team3.setName("Lierse");
+            team3.setCountry("Belgium");
+            team3.setStadium("Herman van den poorten stadion");
 
 
             teamRepository.save(team1);
             teamRepository.save(team2);
+            teamRepository.save(team3);
+
         }
     }
 
