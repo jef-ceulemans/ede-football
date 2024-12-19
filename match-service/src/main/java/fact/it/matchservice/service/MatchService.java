@@ -45,8 +45,8 @@ public class MatchService {
 
             // Voorbeeldwedstrijd 2
             Match match2 = Match.builder()
-                    .team1Id(2L) // Vervang met daadwerkelijke team IDs
-                    .team2Id(1L) // Vervang met daadwerkelijke team IDs
+                    .team1Id(1L) // Vervang met daadwerkelijke team IDs
+                    .team2Id(2L) // Vervang met daadwerkelijke team IDs
                     .matchDate(LocalDateTime.of(2024, 12, 22, 20, 0)) // Datum en tijd van de wedstrijd
                     .stadium("Old Trafford") // Stadionnaam
                     .score("0-0") // Begin score
