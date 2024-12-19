@@ -37,8 +37,8 @@ public class MatchController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public String updateMatchStatus(@PathVariable Long id, @RequestParam String status) {
-        boolean result = matchService.updateMatchStatus(id, status);
+    public String updateMatchStatus(@PathVariable Long id, @RequestParam String status, @RequestParam(required = false) String score) {
+        boolean result = matchService.updateMatchStatus(id, status, score);
         return (result ? "Match status updated successfully" : "Match status update failed");
     }
 

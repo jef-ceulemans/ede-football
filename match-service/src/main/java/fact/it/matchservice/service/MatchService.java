@@ -25,12 +25,41 @@ public class MatchService {
     @Value("${teamservice.baseurl}")
     private String teamServiceBaseUrl;
 
+    // Methode om voorbeelddata toe te voegen bij de opstart
+    @PostConstruct
+    public void loadData() {
+        if (matchRepository.count() <= 0) {
+            // Voorbeeldwedstrijd 1
+            Match match1 = Match.builder()
+                    .team1Id(1L) // Vervang met daadwerkelijke team IDs als ze bestaan
+                    .team2Id(2L) // Vervang met daadwerkelijke team IDs
+                    .matchDate(LocalDateTime.of(2024, 12, 20, 18, 0)) // Datum en tijd van de wedstrijd
+                    .stadium("Camp Nou") // Stadionnaam
+                    .score("0-0") // Begin score
+                    .status("scheduled") // Status van de wedstrijd
+                    .build();
+
+            // Voorbeeldwedstrijd 2
+            Match match2 = Match.builder()
+                    .team1Id(2L) // Vervang met daadwerkelijke team IDs
+                    .team2Id(3L) // Vervang met daadwerkelijke team IDs
+                    .matchDate(LocalDateTime.of(2024, 12, 22, 20, 0)) // Datum en tijd van de wedstrijd
+                    .stadium("Old Trafford") // Stadionnaam
+                    .score("0-0") // Begin score
+                    .status("scheduled") // Status van de wedstrijd
+                    .build();
+
+            matchRepository.save(match1);
+            matchRepository.save(match2);
+        }
+    }
     public boolean createMatch(MatchRequest matchRequest) {
         Match match = Match.builder()
                 .team1Id(matchRequest.getTeam1Id())
                 .team2Id(matchRequest.getTeam2Id())
                 .matchDate(matchRequest.getMatchDate())
                 .stadium(matchRequest.getStadium())
+                .score("0-0") // Startscore is 0-0 (of leeg, afhankelijk van je voorkeur)
                 .status("scheduled")
                 .build();
 
@@ -46,9 +75,13 @@ public class MatchService {
         }
     }
 
-    public boolean updateMatchStatus(Long id, String status) {
+    public boolean updateMatchStatus(Long id, String status, String score) {
         Match match = matchRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Match not found"));
+        // Als de status is 'finished', kan de score worden bijgewerkt
+        if ("finished".equalsIgnoreCase(status)) {
+            match.setScore(score); // Score instellen wanneer de wedstrijd is afgelopen
+        }
         match.setStatus(status);
         matchRepository.save(match);
         return true;
