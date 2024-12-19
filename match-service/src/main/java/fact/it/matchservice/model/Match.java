@@ -11,7 +11,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "match") // Database tabelnaam
+@Table(name = "match_game") // Database tabelnaam
 @Getter
 @Setter
 @Builder
