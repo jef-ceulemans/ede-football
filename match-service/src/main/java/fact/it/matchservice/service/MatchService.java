@@ -32,7 +32,6 @@ public class MatchService {
     // Methode om voorbeelddata toe te voegen bij de opstart
     @PostConstruct
     public void loadData() {
-        teamRepository.deleteAll(); // Verwijder bestaande teams
         if (matchRepository.count() <= 0) {
             // Voorbeeldwedstrijd 1
             Match match1 = Match.builder()
