@@ -130,13 +130,19 @@ public class MatchService {
     }*/
 
     private String getTeamName(Long teamId) {
-        TeamResponse teamResponse = webClient.get()
-                .uri("http://" + teamServiceBaseUrl + "/api/team?teamId=" + teamId)
-                .retrieve()
-                .bodyToMono(TeamResponse.class) // Hier deserialiseer je de JSON naar een TeamResponse object
-                .block();
+        try {
+            TeamResponse teamResponse = webClient.get()
+                    .uri("http://" + teamServiceBaseUrl + "/api/team?teamId=" + teamId)
+                    .retrieve()
+                    .bodyToMono(TeamResponse.class)
+                    .block();
 
-        return teamResponse != null ? teamResponse.getName() : "Unknown"; // Return alleen de naam van het team
+            System.out.println("Team ID: " + teamId + ", Name: " + (teamResponse != null ? teamResponse.getName() : "null"));
+            return teamResponse != null ? teamResponse.getName() : "Unknown";
+        } catch (Exception e) {
+            System.err.println("Error fetching team with ID: " + teamId + " - " + e.getMessage());
+            return "Unknown";
+        }
     }
 
 
