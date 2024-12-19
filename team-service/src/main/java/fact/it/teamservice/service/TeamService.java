@@ -47,13 +47,12 @@ public class TeamService {
             System.out.println("Teams already exist in the database.");
         }
 
-        }
+
     }
 
     // Methode om alle teams op te halen
     @Transactional(readOnly = true)
     public List<TeamResponse> getTeams() {
-        System.out.println("Retrieved teams: " + teams);
         return teamRepository.findAll().stream()
                 .map(team -> TeamResponse.builder()
                         .id(team.getId())
@@ -62,6 +61,8 @@ public class TeamService {
                         .stadium(team.getStadium())
                         .build())
                 .toList();
+        System.out.println("Retrieved teams: " + teams);
+
     }
 
     // Methode om een team op te halen op basis van teamId
