@@ -120,12 +120,24 @@ public class MatchService {
         }
     }
 
-    private String getTeamName(Long teamId) {
+   /* private String getTeamName(Long teamId) {
         return webClient.get()
                 .uri("http://" + teamServiceBaseUrl + "/api/team?teamId=" + teamId)
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
+    }*/
+
+    private String getTeamName(Long teamId) {
+        // Haal de team-informatie op van de team-service als een JSON-object
+        TeamResponse teamResponse = webClient.get()
+                .uri("http://" + teamServiceBaseUrl + "/api/team/" + teamId) // Aangepast naar het juiste endpoint van de team-service
+                .retrieve()
+                .bodyToMono(TeamResponse.class) // Deserialize naar TeamResponse object
+                .block(); // Wacht op de response
+
+        // Return de naam van het team
+        return teamResponse != null ? teamResponse.getName() : "Unknown";
     }
 
 
