@@ -2,6 +2,7 @@ package fact.it.matchservice.service;
 
 import fact.it.matchservice.dto.MatchRequest;
 import fact.it.matchservice.dto.MatchResponse;
+import fact.it.matchservice.dto.TeamResponse;
 import fact.it.matchservice.model.Match;
 import fact.it.matchservice.repository.MatchRepository;
 import lombok.RequiredArgsConstructor;
@@ -120,12 +121,22 @@ public class MatchService {
         }
     }
 
-    private String getTeamName(Long teamId) {
+    /*private String getTeamName(Long teamId) {
         return webClient.get()
                 .uri("http://" + teamServiceBaseUrl + "/api/team?teamId=" + teamId)
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
+    }*/
+
+    private String getTeamName(Long teamId) {
+        TeamResponse teamResponse = webClient.get()
+                .uri("http://" + teamServiceBaseUrl + "/api/team?teamId=" + teamId)
+                .retrieve()
+                .bodyToMono(TeamResponse.class) // Hier deserialiseer je de JSON naar een TeamResponse object
+                .block();
+
+        return teamResponse != null ? teamResponse.getName() : "Unknown"; // Return alleen de naam van het team
     }
 
 
