@@ -22,6 +22,11 @@ public class TeamController {
         return teamService.getTeams();
     }
 
+    @GetMapping("/{teamId}")
+    @ResponseStatus(HttpStatus.OK)
+    public TeamResponse getTeamById(@PathVariable Long teamId) {
+        return teamService.getTeamById(teamId);
+    }
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public TeamResponse getTeamById(@RequestParam Long teamId){
