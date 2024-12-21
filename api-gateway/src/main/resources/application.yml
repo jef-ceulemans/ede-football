@@ -38,11 +38,11 @@ spring:
           predicates:
             - Path=/news/**
           filters:
-            - SetPath=/api/news
+            - RewritePath=/news/(?<remaining>.*), /api/news/${remaining}
 
         - id: team-service
           uri: http://${TEAM_SERVICE_BASEURL:localhost:8084}
           predicates:
             - Path=/teams/**
           filters:
-            - SetPath=/api/team
+            - RewritePath=/teams/(?<remaining>.*), /api/team/${remaining}
