@@ -17,7 +17,7 @@ public class SecurityConfig {
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity serverHttpSecurity) {
         serverHttpSecurity
                 .authorizeExchange(exchange ->
-                        exchange.pathMatchers(HttpMethod.GET,"/matches")
+                        exchange.pathMatchers(HttpMethod.GET,"/match/all")
                                 .permitAll()
                                 .anyExchange()
                                 .authenticated()
