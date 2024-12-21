@@ -29,15 +29,16 @@ spring:
         - id: match-service
           uri: http://${MATCH_SERVICE_BASEURL:localhost:8082}
           predicates:
-            - Path=/matches/**
-          filters:
-            - RewritePath=/matches/(?<remaining>.*), /api/match/${remaining}
-        - id: match-service-post
-          uri: http://${MATCH_SERVICE_BASEURL:localhost:8082}
-          predicates:
-            - Path=/matches
-          filters:
-            - RewritePath=/matches, /api/match
+            - Path=/api/match/**
+#          filters:
+#            - RewritePath=/matches/(?<remaining>.*), /api/match/${remaining}
+#        - id: match-service-post
+#          uri: http://${MATCH_SERVICE_BASEURL:localhost:8082}
+#          predicates:
+#            - Path=/matches
+#          filters:
+#            - RewritePath=/matches, /api/match
+
 
         - id: news-service
           uri: http://${NEWS_SERVICE_BASEURL:localhost:8081}
