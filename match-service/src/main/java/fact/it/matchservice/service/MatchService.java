@@ -57,11 +57,12 @@ public class MatchService {
             matchRepository.save(match2);
         }
     }
+
+    @Transactional
     public boolean createMatch(MatchRequest matchRequest) {
         Match match = Match.builder()
                 .team1Id(matchRequest.getTeam1Id())
                 .team2Id(matchRequest.getTeam2Id())
-                .matchDate(matchRequest.getMatchDate())
                 .stadium(matchRequest.getStadium())
                 .score("0-0") // Startscore is 0-0 (of leeg, afhankelijk van je voorkeur)
                 .status("scheduled")
@@ -110,11 +111,13 @@ public class MatchService {
 
     private boolean validateTeamExists(Long teamId) {
         try {
+            log.info("Validating team existence via URL: {}", url);
             webClient.get()
                     .uri("http://" + teamServiceBaseUrl + "/api/team/" + teamId)
                     .retrieve()
                     .bodyToMono(Void.class)
                     .block();
+            log.info("Team with ID {} exists.", teamId);
             return true; // If the call succeeds, the team exists
         } catch (Exception e) {
             return false; // If the call fails, the team does not exist
@@ -154,6 +157,8 @@ public class MatchService {
         }
         return false;
     }
+
+
 
     private MatchResponse mapToMatchResponse(Match match) {
         return MatchResponse.builder()
