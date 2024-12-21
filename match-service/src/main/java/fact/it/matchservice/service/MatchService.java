@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import jakarta.annotation.PostConstruct;
-import lombok.extern.slf4j.Slf4j;
 
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -112,13 +111,11 @@ public class MatchService {
 
     private boolean validateTeamExists(Long teamId) {
         try {
-            log.info("Validating team existence via URL: {}", teamServiceBaseUrl);
             webClient.get()
                     .uri("http://" + teamServiceBaseUrl + "/api/team/" + teamId)
                     .retrieve()
                     .bodyToMono(Void.class)
                     .block();
-            log.info("Team with ID {} exists.", teamId);
             return true; // If the call succeeds, the team exists
         } catch (Exception e) {
             return false; // If the call fails, the team does not exist
