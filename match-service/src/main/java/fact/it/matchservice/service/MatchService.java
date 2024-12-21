@@ -112,7 +112,7 @@ public class MatchService {
 
     private boolean validateTeamExists(Long teamId) {
         try {
-            log.info("Validating team existence via URL: {}", url);
+            log.info("Validating team existence via URL: {}", teamServiceBaseUrl);
             webClient.get()
                     .uri("http://" + teamServiceBaseUrl + "/api/team/" + teamId)
                     .retrieve()
