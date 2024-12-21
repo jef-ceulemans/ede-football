@@ -31,7 +31,7 @@ spring:
           predicates:
             - Path=/matches/**
           filters:
-            - SetPath=/api/match
+            - SetPath=/api/match/{segment}
 
         - id: news-service
           uri: http://${NEWS_SERVICE_BASEURL:localhost:8081}
