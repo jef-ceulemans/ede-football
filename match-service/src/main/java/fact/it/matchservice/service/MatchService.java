@@ -111,7 +111,7 @@ public class MatchService {
     private boolean validateTeamExists(Long teamId) {
         try {
             webClient.get()
-                    .uri("http://" + teamServiceBaseUrl + "/api/team/" + teamId)
+                    .uri("http://" + teamServiceBaseUrl + "/api/team?teamId=" + teamId)  // Gebruik queryparameter
                     .retrieve()
                     .bodyToMono(Void.class)
                     .block();
