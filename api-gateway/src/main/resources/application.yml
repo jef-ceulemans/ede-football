@@ -43,13 +43,13 @@ spring:
         - id: news-service
           uri: http://${NEWS_SERVICE_BASEURL:localhost:8081}
           predicates:
-            - Path=/news/**
-          filters:
-            - RewritePath=/news/(?<remaining>.*), /api/news/${remaining}
+            - Path=/api/news/**
+#          filters:
+#            - RewritePath=/news/(?<remaining>.*), /api/news/${remaining}
 
         - id: team-service
           uri: http://${TEAM_SERVICE_BASEURL:localhost:8084}
           predicates:
-            - Path=/teams/**
-          filters:
-            - RewritePath=/teams/(?<remaining>.*), /api/team/${remaining}
+            - Path=/api/teams/**
+#          filters:
+#            - RewritePath=/teams/(?<remaining>.*), /api/team/${remaining}
