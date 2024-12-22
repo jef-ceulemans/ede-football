@@ -35,7 +35,7 @@ Je kan alleen de get verzoeken bereiken zonder ingelogt te zijn, voor de andere 
 ![alt text](assets/getMatch.png)
 
 ## Get alle teams
-![alt text](assets/getTeams.png)
+![alt text](assets/getTeam.png)
 
 ## Get all het nieuws
 ![alt text](assets/getNews.png)
