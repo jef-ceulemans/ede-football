@@ -53,7 +53,7 @@ public class NewsServiceUnitTest {
     @Test
     public void testUpdateNews() {
         News existingNews = News.builder()
-                .id(1L)
+                .id("1")
                 .author("Old Author")
                 .content("Old Content")
                 .imageUrl("https://example.com/old.jpg")
@@ -62,12 +62,12 @@ public class NewsServiceUnitTest {
                 .build();
 
         NewsRequest newsRequest = new NewsRequest();
-        newsRequest.setId(1L);
+        newsRequest.setId("1");
         newsRequest.setAuthor("New Author");
         newsRequest.setContent("New Content");
         newsRequest.setImageUrl("https://example.com/new.jpg");
 
-        when(newsRepository.findById(1L)).thenReturn(Optional.of(existingNews));
+        when(newsRepository.findById("1")).thenReturn(Optional.of(existingNews));
         when(newsRepository.save(any(News.class))).thenReturn(existingNews);
 
         boolean result = newsService.updateNews(newsRequest);
@@ -83,7 +83,7 @@ public class NewsServiceUnitTest {
     @Test
     public void testGetAllNews() {
         News news1 = News.builder()
-                .id(1L)
+                .id("1") // Verander naar een String
                 .author("Author 1")
                 .content("Content 1")
                 .imageUrl("https://example.com/1.jpg")
@@ -92,7 +92,7 @@ public class NewsServiceUnitTest {
                 .build();
 
         News news2 = News.builder()
-                .id(2L)
+                .id("2") // Verander naar een String
                 .author("Author 2")
                 .content("Content 2")
                 .imageUrl("https://example.com/2.jpg")
@@ -115,7 +115,7 @@ public class NewsServiceUnitTest {
         String author = "Specific Author";
 
         News news = News.builder()
-                .id(1L)
+                .id("1") // Verander naar een String
                 .author(author)
                 .content("Content")
                 .imageUrl("https://example.com/image.jpg")
