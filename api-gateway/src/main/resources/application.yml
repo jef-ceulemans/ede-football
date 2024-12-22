@@ -50,6 +50,6 @@ spring:
         - id: team-service
           uri: http://${TEAM_SERVICE_BASEURL:localhost:8084}
           predicates:
-            - Path=/api/teams/**
+            - Path=/api/team/**
 #          filters:
 #            - RewritePath=/teams/(?<remaining>.*), /api/team/${remaining}
