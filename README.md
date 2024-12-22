@@ -30,3 +30,40 @@ Wat ook logisch is want voor een match heb je teams nodig en zo kan je bestaande
 - DELETE /api/team/{id} -> Delete a team by id
 
 Je kan alleen de get verzoeken bereiken zonder ingelogt te zijn, voor de andere moet je ingelogt zijn.
+
+## Get alle matches
+![alt text](assets/getMatch.png)
+
+## Get alle teams
+![alt text](assets/getTeams.png)
+
+## Get all het nieuws
+![alt text](assets/getNews.png)
+
+## Get een match door een id (met auth)
+![alt text](assets/getMatchId.png)
+
+## Post een match
+![alt text](assets/postMatch.png)
+
+## Post een team
+![alt text](assets/postTeam.png)
+
+## Post een niewsbericht
+![alt text](assets/postNews.png)
+
+## Put een match, we passen de score aan en de status
+![alt text](assets/putMatch.png)
+
+## Dit is het bewijs dat de put gewerkt heeft
+![alt text](assets/zienPutWerkt.png)
+
+## Delete een match
+![alt text](assets/deleteMatch.png)
+
+
+
+
+
+
+
