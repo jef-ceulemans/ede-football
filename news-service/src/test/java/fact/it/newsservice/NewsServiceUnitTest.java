@@ -73,7 +73,7 @@ public class NewsServiceUnitTest {
         boolean result = newsService.updateNews(newsRequest);
 
         assertTrue(result);
-        verify(newsRepository, times(1)).findById(1L);
+        verify(newsRepository, times(1)).findById("1");
         verify(newsRepository, times(1)).save(existingNews);
         assertEquals("New Author", existingNews.getAuthor());
         assertEquals("New Content", existingNews.getContent());
