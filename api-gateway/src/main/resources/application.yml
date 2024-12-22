@@ -22,27 +22,14 @@ spring:
         jwt:
           issuer-uri: https://accounts.google.com
           jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
-  redis:
-    host: ${REDIS_HOST:localhost}
-    port: ${REDIS_PORT:6379}
 
   cloud:
     gateway:
-      default-filters:
-        - name: RequestRateLimiter
-          args:
-            redis-rate-limiter.replenishRate: 10
-            redis-rate-limiter.burstCapacity: 20
       routes:
         - id: match-service
           uri: http://${MATCH_SERVICE_BASEURL:localhost:8082}
           predicates:
             - Path=/api/match/**
-          filters:
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 5
-                redis-rate-limiter.burstCapacity: 10
 #          filters:
 #            - RewritePath=/matches/(?<remaining>.*), /api/match/${remaining}
 #        - id: match-service-post
