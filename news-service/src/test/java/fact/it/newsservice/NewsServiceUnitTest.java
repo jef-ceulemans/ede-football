@@ -86,7 +86,7 @@ public class NewsServiceUnitTest {
                 .id("1") // Verander naar een String
                 .author("Author 1")
                 .content("Content 1")
-                .imageUrl("https://example.com/1.jpg")
+                .imageUrl(1)
                 .publishedDate(LocalDateTime.now())
                 .updatedDate(LocalDateTime.now())
                 .build();
